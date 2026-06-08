@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 
 class CategoryView extends StatefulWidget {
   const CategoryView({super.key});
@@ -11,7 +12,7 @@ class _CategoryViewState extends State<CategoryView> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("分类")
+      child:Text("分类")
     );
   }
 }
