@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:he_shop/api/home.dart';
 import 'package:he_shop/components/Home/Category.dart';
 import 'package:he_shop/components/Home/Hot.dart';
 import 'package:he_shop/components/Home/MoreList.dart';
@@ -15,11 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  final List<Banneritem> _bannerList = [
-    Banneritem(id: "1", imgURL: "http://xiruo1.test.upcdn.net/slider_1.png"),
-    Banneritem(id: "2", imgURL: "http://xiruo1.test.upcdn.net/slider_2.png"),
-    Banneritem(id: "3", imgURL: "http://xiruo1.test.upcdn.net/slider_3.png"),
-  ];
+  List<Banneritem> _bannerList = [];
 
   List<Widget> _getScrollChildren() {
     return [
@@ -55,6 +52,20 @@ class _HomeViewState extends State<HomeView> {
     Morelist(),
 
     ];
+  }
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getBannerList();
+  }
+
+  void _getBannerList() async{
+    _bannerList =  await getBannerListAPI();
+    setState(() {
+      
+    });
   }
 
   @override
