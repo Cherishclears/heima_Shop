@@ -16,6 +16,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
+  List<CategoryItem> _categoryList = [];
   List<Banneritem> _bannerList = [];
 
   List<Widget> _getScrollChildren() {
@@ -25,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
 
       SliverToBoxAdapter(child: SizedBox(height: 10)),
 
-      SliverToBoxAdapter(child: Category()),
+      SliverToBoxAdapter(child: Category(categoryList:_categoryList)),
 
       SliverToBoxAdapter(child: SizedBox(height: 10)),
 
@@ -59,6 +60,7 @@ class _HomeViewState extends State<HomeView> {
     // TODO: implement initState
     super.initState();
     _getBannerList();
+    _getCategoryList();
   }
 
   void _getBannerList() async{
@@ -67,6 +69,14 @@ class _HomeViewState extends State<HomeView> {
       
     });
   }
+
+  void _getCategoryList() async{
+    _categoryList = await getCategoryListAPI();
+    setState(() {
+      
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

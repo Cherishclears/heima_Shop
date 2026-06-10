@@ -9,3 +9,12 @@ Future<List<Banneritem>> getBannerListAPI() async {
     return Banneritem.fromJSON(item as Map<String, dynamic>);
   }).toList();
 }
+
+// 分类列表
+Future<List<CategoryItem>> getCategoryListAPI() async{
+  return ((await dioRequest.get(HTTPConstants.CATEGORY_LIST)) as List).map((
+    item,
+  ) {
+    return CategoryItem.fromJSON(item as Map<String, dynamic>);
+  }).toList();
+}

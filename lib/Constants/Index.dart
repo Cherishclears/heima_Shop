@@ -6,4 +6,5 @@ class GlobalConstants{
 
 class HTTPConstants{
   static const String BANNER_LIST = "/home/banner";
+  static const String CATEGORY_LIST = "/home/category/head";
 }
