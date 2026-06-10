@@ -15,22 +15,21 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   List<CategoryItem> _categoryList = [];
   List<Banneritem> _bannerList = [];
 
   List<Widget> _getScrollChildren() {
     return [
       // 包裹普通Widget的sliver组件
-      SliverToBoxAdapter(child: Slider(bannerlist: _bannerList,)),
+      SliverToBoxAdapter(child: Slider(bannerlist: _bannerList)),
 
       SliverToBoxAdapter(child: SizedBox(height: 10)),
 
-      SliverToBoxAdapter(child: Category(categoryList:_categoryList)),
+      SliverToBoxAdapter(child: Category(categoryList: _categoryList)),
 
       SliverToBoxAdapter(child: SizedBox(height: 10)),
 
-      SliverToBoxAdapter(child: Suggestion()),
+      SliverToBoxAdapter(child: Suggestion(productList: _productList,)),
 
       SliverToBoxAdapter(child: SizedBox(height: 10)),
 
@@ -48,35 +47,37 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
 
-    SliverToBoxAdapter(child: SizedBox(height: 10)),
+      SliverToBoxAdapter(child: SizedBox(height: 10)),
 
-    Morelist(),
-
+      Morelist(),
     ];
   }
-  
+
+  ProductList _productList = ProductList(id: "", title: "", subTypes: []);
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _getBannerList();
     _getCategoryList();
+    _getProductList();
   }
 
-  void _getBannerList() async{
-    _bannerList =  await getBannerListAPI();
-    setState(() {
-      
-    });
+  void _getBannerList() async {
+    _bannerList = await getBannerListAPI();
+    setState(() {});
   }
 
-  void _getCategoryList() async{
+  void _getCategoryList() async {
     _categoryList = await getCategoryListAPI();
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
+  void _getProductList() async {
+    _productList = await getProductListAPI();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
